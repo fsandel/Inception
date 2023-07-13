@@ -1,7 +1,11 @@
 FROM alpine:latest
-LABEL maintainer="flo"
-RUN apt update && apt upgrade -y
-RUN apt install nginx -y
+LABEL maintainer="fsandel@student.42heilbronn.de"
 
-EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
+RUN apk update
+RUN apk upgrade
+
+RUN apk add mariadb
+
+#RUN systemctl start mariadb
+
+CMD ["echo", "Hello World"]

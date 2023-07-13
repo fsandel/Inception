@@ -1,0 +1,5 @@
+build maria db
+docker build --tag mariadb --file srcs/requirements/mariadb/Dockerfile .
+
+run container
+docker run -p 80:80 --name mariadb mariadb
