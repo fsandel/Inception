@@ -1,4 +1,5 @@
 all:
+	make rm_nginx
 	make build_nginx
 	make run_nginx
 
@@ -9,4 +10,8 @@ build_nginx:
 	docker build --tag nginx --file srcs/requirements/nginx/Dockerfile .
 
 run_nginx:
-	docker rm nginx; docker run -d -p 443:443 --name nginx nginx
+	docker run -d -p 443:443 --name nginx -v ~/Inception/srcs/requirements/nginx/html:/usr/share/nginx/html nginx
+
+
+rm_nginx:
+	docker kill nginx; docker rm nginx
