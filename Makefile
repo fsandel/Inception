@@ -1,5 +1,5 @@
 all:
-	make rm_nginx
+	make -i rm_nginx
 	make build_nginx
 	make run_nginx
 
@@ -10,7 +10,10 @@ build_nginx:
 	docker build --tag nginx --file srcs/requirements/nginx/Dockerfile .
 
 run_nginx:
-	docker run -d -p 443:443 --name nginx -v ~/Inception/srcs/requirements/nginx/html:/usr/share/nginx/html nginx
+	docker run -d -p 80:80 -p 443:443 --name nginx -v ~/Inception/srcs/requirements/nginx/html:/usr/share/nginx/html -v ~/Inception/srcs/requirements/nginx/conf:/etc/nginx/conf.d nginx
+
+interactive:
+	docker run -it -p 80:80 -p 443:443 --name nginx -v ~/Inception/srcs/requirements/nginx/html:/usr/share/nginx/html -v ~/Inception/srcs/requirements/nginx/conf:/etc/nginx/conf.d nginx /bin/bash
 
 
 rm_nginx:
