@@ -13,6 +13,7 @@ RUN openssl req -newkey rsa:4096 -x509 -sha256 -days 365 -nodes \
 
 RUN mkdir -p /run/nginx
 COPY srcs/requirements/nginx/conf/nginx.conf /etc/nginx/conf.d/default.conf
+COPY srcs/requirements/nginx/html/index.html /var/www/html
 EXPOSE 443
 
 CMD ["nginx", "-g", "daemon off;"]
