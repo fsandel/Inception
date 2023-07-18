@@ -24,3 +24,9 @@ interactive:
 
 rm_nginx:
 	docker kill nginx; docker rm nginx
+
+compose:
+	docker-compose -f srcs/docker-compose.yml up --build -d
+
+down:
+	docker-compose -f srcs/docker-compose.yml down
