@@ -1,7 +1,6 @@
 all:
 	make -i rm_nginx
-	make build_nginx
-	make run_nginx
+	make compose
 
 fclean:
 	docker system prune -a
