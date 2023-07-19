@@ -1,0 +1,5 @@
+CREATE DATABASE database IF NOT EXISTS;
+CREATE USER fsandel IF NOT EXISTS IDENTIFIED BY fsandelpwd;
+GRANT ALL PRIVILEGES ON database to 'fsandel'@'%';
+ALTER USER 'root'@'localhost' IDENTIFIED by rootpw;
+FLUSH PRIVILEGES;

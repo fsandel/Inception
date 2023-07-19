@@ -1,7 +1,10 @@
 all:
-	make wordpress
+	make compose
 
 #	make compose
+re:
+	make -i fclean
+	make all
 
 wordpress:
 	make -i rm_wordpress
@@ -9,7 +12,11 @@ wordpress:
 	make run_wordpress
 
 fclean:
-	docker system prune -a
+	make -i kill_all
+	docker system prune -af
+
+kill_all:
+	docker kill $(shell docker ps -q)
 
 build_nginx:
 	docker build --tag nginx --file srcs/requirements/nginx/Dockerfile .
@@ -34,7 +41,7 @@ rm_wordpress:
 	docker kill wordpress; docker rm wordpress; docker rmi wordpress
 
 compose:
-	docker-compose -f srcs/docker-compose.yml up --build -d
+	docker-compose -f srcs/docker-compose.yml up -d --build
 
 down:
 	docker-compose -f srcs/docker-compose.yml down
