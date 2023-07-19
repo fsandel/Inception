@@ -1,16 +1,17 @@
 FROM debian:12.0
+
 LABEL maintainer="fsandel@student.42heilbronn.de"
+LABEL version="1.0"
+LABEL description="WordPress Server"
 
 RUN apt update && apt upgrade -y
 RUN apt install php-fpm -y
 RUN apt install php-mysql -y
 RUN apt install curl -y
 
-RUN apt install bash
-
-COPY ./tools/wordpress_setup.sh /var/tmp
-RUN chmod +x /var/tmp/wordpress_setup.sh
-ENTRYPOINT [ "/var/tmp/wordpress_setup.sh" ]
+COPY ./tools/wordpress_setup.sh /
+RUN chmod +x /wordpress_setup.sh
+ENTRYPOINT [ "/wordpress_setup.sh" ]
 
 COPY ./conf/www.conf /etc/php/7.3/fmp/pool.de
 

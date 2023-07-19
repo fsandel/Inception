@@ -13,6 +13,9 @@ RUN chmod +x /mariadb_setup.sh
 COPY ./tools/sql_setup.sh /
 RUN chmod +x /sql_setup.sh
 
+RUN mkdir -p /etc/mysql
+COPY ./conf/my.cnf /etc/mysql/
+
 EXPOSE 3306
 
 ENTRYPOINT [ "/mariadb_setup.sh" ]

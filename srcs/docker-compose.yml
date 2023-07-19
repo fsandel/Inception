@@ -2,35 +2,35 @@ version: "3"
 
 services:
 
-  # nginx:
-  #   depends_on:
-  #     - wordpress
-  #   build:
-  #     context: requirements/nginx/
-  #     dockerfile: Dockerfile
-  #   container_name: nginx
-  #   ports:
-  #     - "443:443"
-  #   image: nginx
-  #   restart: on-failure
-  #   env_file:
-  #     - .env
+  nginx:
+    depends_on:
+      - wordpress
+    build:
+      context: requirements/nginx/
+      dockerfile: Dockerfile
+    container_name: nginx
+    ports:
+      - "443:443"
+    image: nginx
+    restart: on-failure
+    env_file:
+      - .env
 
-  # wordpress:
-  #   # depends_on:
-  #   #   - mariadb
-  #   build:
-  #     context: requirements/wordpress/
-  #     dockerfile: Dockerfile
-  #   container_name: wordpress
-  #   ports:
-  #     - "9000:9000"
-  #   image: wordpress
-  #   restart: on-failure
-  #   # networks:
-  #   #   - inception
-  #   env_file:
-  #     - .env
+  wordpress:
+    # depends_on:
+    #   - mariadb
+    build:
+      context: requirements/wordpress/
+      dockerfile: Dockerfile
+    container_name: wordpress
+    ports:
+      - "9000:9000"
+    image: wordpress
+    restart: on-failure
+    # networks:
+    #   - inception
+    env_file:
+      - .env
 
   mariadb:
     build:
