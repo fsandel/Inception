@@ -18,4 +18,4 @@ COPY ./conf/my.cnf /etc/mysql/
 
 EXPOSE 3306
 
-ENTRYPOINT [ "/mariadb_setup.sh" ]
+CMD ["/mariadb_setup.sh"]
