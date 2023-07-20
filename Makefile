@@ -1,7 +1,6 @@
 all:
 	make compose
 
-#	make compose
 re:
 	make -i fclean
 	make all
@@ -14,6 +13,9 @@ wordpress:
 fclean:
 	make -i kill_all
 	docker system prune -af
+	docker volume rm -f $(shell docker volume ls -q)
+	sudo rm -rf wordpress_database/*
+	sudo rm -rf wordpress_website_files/*
 
 kill_all:
 	docker kill $(shell docker ps -q)

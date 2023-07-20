@@ -15,10 +15,10 @@ services:
     restart: on-failure
     env_file:
       - .env
+    volumes:
+      - wordpress_website_files:/var/www/html
 
   wordpress:
-    # depends_on:
-    #   - mariadb
     build:
       context: requirements/wordpress/
       dockerfile: Dockerfile
@@ -31,6 +31,8 @@ services:
     #   - inception
     env_file:
       - .env
+    volumes:
+      - wordpress_website_files:/var/www/html
 
   mariadb:
     build:
@@ -45,6 +47,23 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD=rootpw
       - MYSQL_DATABASE=database
+    volumes:
+      - wordpress_database:/var/lib/mysql
 
 
+volumes:
+  wordpress_database:
+    name: wordpress_database
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ./wordpress_database
 
+  wordpress_website_files:
+    name: wordpress_website_files
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ./wordpress_website_files

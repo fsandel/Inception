@@ -1,8 +1,12 @@
 #!/bin/bash
 
-/sql_setup.sh
+if test -f "/conf.sql"; then
+    mariadbd -u root
+else
+    /sql_setup.sh
 
-/etc/init.d/mariadb start < /conf.sql
-/etc/init.d/mariadb stop
+    /etc/init.d/mariadb start < /conf.sql
+    /etc/init.d/mariadb stop
 
-mariadbd -u root
+    mariadbd -u root
+fi
