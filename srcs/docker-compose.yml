@@ -17,8 +17,12 @@ services:
       - .env
     volumes:
       - wordpress_website_files:/var/www/html
+    networks:
+      - inception
 
   wordpress:
+    depends_on:
+      - mariadb
     build:
       context: requirements/wordpress/
       dockerfile: Dockerfile
@@ -27,8 +31,8 @@ services:
       - "9000:9000"
     image: wordpress
     restart: on-failure
-    # networks:
-    #   - inception
+    networks:
+      - inception
     env_file:
       - .env
     volumes:
@@ -43,10 +47,9 @@ services:
       - "3306:3306"
     image: mariadb
     restart: on-failure
+    networks:
+      - inception
     env_file: .env
-    environment:
-      - MYSQL_ROOT_PASSWORD=rootpw
-      - MYSQL_DATABASE=database
     volumes:
       - wordpress_database:/var/lib/mysql
 
@@ -67,3 +70,8 @@ volumes:
       type: none
       o: bind
       device: ./wordpress_website_files
+
+networks:
+  inception:
+    # name: inception
+    # driver: bridge

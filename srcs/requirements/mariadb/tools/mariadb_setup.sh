@@ -1,12 +1,20 @@
 #!/bin/bash
 
-if test -f "/conf.sql"; then
+executable() {
+    # /bin/bash
     mariadbd -u root
+    # /bin/bash
+
+}
+
+if test -f "/conf.sql"; then
+    executable
 else
     /sql_setup.sh
 
-    /etc/init.d/mariadb start < /conf.sql
-    /etc/init.d/mariadb stop
+    service mariadb start
+    mariadb -u root < /conf.sql
+    service mariadb stop
 
-    mariadbd -u root
+    executable
 fi

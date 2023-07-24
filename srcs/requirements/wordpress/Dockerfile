@@ -9,6 +9,11 @@ RUN apt install php -y
 RUN apt install php-fpm -y
 RUN apt install php-mysql -y
 RUN apt install wget -y
+RUN apt install curl -y
+
+RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && chmod +x wp-cli.phar && mv wp-cli.phar /usr/local/bin/wp
+
+RUN mkdir -p /run/php
 
 COPY ./tools/wordpress_setup.sh /
 RUN chmod +x /wordpress_setup.sh
@@ -16,7 +21,10 @@ RUN chmod +x /wordpress_setup.sh
 COPY ./tools/wordpress_config_setup.sh /
 RUN chmod +x /wordpress_config_setup.sh
 
-# COPY ./conf/www.conf /etc/php/7.3/fmp/pool.de
+RUN rm -rf /etc/php/8.2/fmp/pool.d/www.conf
+COPY ./conf/www.conf /etc/php/8.2/fmp/pool.d/
+
+WORKDIR /var/www/html/
 
 EXPOSE 9000
 

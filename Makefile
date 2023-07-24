@@ -10,6 +10,13 @@ wordpress:
 	make build_wordpress
 	make run_wordpress
 
+clean:
+	make -i kill_all
+	docker rm wordpress nginx mariadb
+	docker rmi wordpress nginx mariadb
+	sudo rm -rf wordpress_database/*
+	sudo rm -rf wordpress_website_files/*
+	
 fclean:
 	make -i kill_all
 	docker system prune -af

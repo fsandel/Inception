@@ -1,7 +1,14 @@
 #!/bin/bash
 
+executable() {
+    # /bin/bash
+    # php-fpm -F
+    # php -S 0.0.0.0:9000 -t .
+    php-fpm8.2 -F
+
+}
 if test -f "/var/www/html/wp-config.php"; then
-    php -S 0.0.0.0:9000 -t .
+    executable
 else
     mkdir -p /var/www/html
     cd /var/www/html
@@ -15,5 +22,5 @@ else
 
     /wordpress_config_setup.sh
 
-    php -S 0.0.0.0:9000 -t .
+    executable
 fi

@@ -17,8 +17,8 @@ RUN openssl req -newkey rsa:4096 -x509 -sha256 -days 365 -nodes \
 RUN mkdir -p /run/nginx
 COPY ./conf/nginx.conf /etc/nginx/conf.d/default.conf
 
-RUN mkdir -p /var/www/html
-COPY ./html/index.html /var/www/html
+# RUN mkdir -p /var/www/html
+# COPY ./html/index.html /var/www/html
 
 COPY ./tools/nginx_setup.sh /
 RUN chmod +x /nginx_setup.sh
