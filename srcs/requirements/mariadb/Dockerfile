@@ -5,7 +5,8 @@ LABEL version="1.0"
 LABEL description="MariaDB Server"
 
 RUN apt update && apt upgrade -y
-RUN apt install -y mariadb-server
+
+RUN apt install mariadb-server -y
 
 COPY ./tools/mariadb_setup.sh /
 RUN chmod +x /mariadb_setup.sh

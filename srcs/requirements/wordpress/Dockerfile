@@ -5,17 +5,23 @@ LABEL version="1.0"
 LABEL description="WordPress Server"
 
 RUN apt update && apt upgrade -y
-# RUN apt install php -y
-# RUN apt install php-fpm -y
-# RUN apt install php-mysql -y
 
-
-RUN apt install php8.2-fpm php8.2-cli php8.2-common php8.2-mysql php8.2-mysqli php8.2-gd php8.2-curl php8.2-mbstring php8.2-xml -y
+RUN apt install php8.2-fpm \
+                php8.2-cli \
+                php8.2-common \
+                php8.2-mysql \
+                php8.2-mysqli \
+                php8.2-gd \
+                php8.2-curl \
+                php8.2-mbstring \
+                php8.2-xml -y
 
 RUN apt install wget -y
 RUN apt install curl -y
 
-RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && chmod +x wp-cli.phar && mv wp-cli.phar /usr/local/bin/wp
+RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar \
+    && chmod +x wp-cli.phar \
+    && mv wp-cli.phar /usr/local/bin/wp
 
 RUN mkdir -p /run/php
 
