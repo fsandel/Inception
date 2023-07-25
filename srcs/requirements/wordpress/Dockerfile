@@ -5,9 +5,13 @@ LABEL version="1.0"
 LABEL description="WordPress Server"
 
 RUN apt update && apt upgrade -y
-RUN apt install php -y
-RUN apt install php-fpm -y
-RUN apt install php-mysql -y
+# RUN apt install php -y
+# RUN apt install php-fpm -y
+# RUN apt install php-mysql -y
+
+
+RUN apt install php8.2-fpm php8.2-cli php8.2-common php8.2-mysql php8.2-mysqli php8.2-gd php8.2-curl php8.2-mbstring php8.2-xml -y
+
 RUN apt install wget -y
 RUN apt install curl -y
 
@@ -21,8 +25,8 @@ RUN chmod +x /wordpress_setup.sh
 COPY ./tools/wordpress_config_setup.sh /
 RUN chmod +x /wordpress_config_setup.sh
 
-RUN rm -rf /etc/php/8.2/fmp/pool.d/www.conf
-COPY ./conf/www.conf /etc/php/8.2/fmp/pool.d/
+RUN rm -rf /etc/php/8.2/fpm/pool.d/www.conf
+COPY ./conf/www.conf /etc/php/8.2/fpm/pool.d/
 
 WORKDIR /var/www/html/
 

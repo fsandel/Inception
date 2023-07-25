@@ -3,8 +3,9 @@
 executable() {
     # /bin/bash
     # php-fpm -F
-    # php -S 0.0.0.0:9000 -t .
-    php-fpm8.2 -F
+    # php -S 0.0.0.0:9000
+    # /bin/bash
+    php-fpm8.2 -F -R
 
 }
 if test -f "/var/www/html/wp-config.php"; then
