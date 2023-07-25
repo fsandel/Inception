@@ -22,5 +22,13 @@ else
 
     /wordpress_config_setup.sh
 
+    wp core install \
+        --url=$DOMAIN_NAME \
+        --title=$TITLE \
+        --admin_user=$MYSQL_USER \
+        --admin_password=$MYSQL_PASSWORD \
+        --admin_email=$EMAIL \
+        --allow-root
+
     executable
 fi

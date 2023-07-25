@@ -1,8 +1,7 @@
 #!/bin/bash
 
 executable() {
-    # /bin/bash
-    mariadbd -u root
+    mariadbd -u root --bind-address=0.0.0.0
     # /bin/bash
 
 }
