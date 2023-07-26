@@ -18,18 +18,20 @@ down:
 
 clean:
 	-docker-compose -f srcs/docker-compose.yml down --volumes --rmi all
-	-sudo rm -rf data/*/*
-	-sudo rm -rf data/*
-	-sudo rm -rf data
-	
+	-make -i remove_volumes
+
 fclean:
 	-docker-compose -f srcs/docker-compose.yml down --volumes --rmi all
 	-docker system prune -af --volumes
 	-docker volume rm -f $(shell docker volume ls -q)
 	-docker network rm $(shell docker network ls -q)
+	-make -i remove_volumes
+
+remove_volumes:
 	-sudo rm -rf data/*/*
 	-sudo rm -rf data/*
 	-sudo rm -rf data
+	-sudo rm -rf ~/data
 
 kill_all:
 	docker kill $(shell docker ps -q)
