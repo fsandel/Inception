@@ -1,4 +1,5 @@
 #!/bin/bash
+# https://wp-cli.org/de/
 
 executable() {
     # /bin/bash
@@ -21,20 +22,23 @@ else
 
     while true; do
         if wp core install \
-            --url="$DOMAIN_NAME" \
-            --title="$WEBSITE_TITLE" \
-            --admin_user="$USER_NAME" \
-            --admin_password="$USER_PASSWORD" \
-            --admin_email="$WEBSITE_EMAIL" \
+            --url="fsandel.42.fr" \
+            --title="my_inception_website" \
+            --admin_user="$WP_ADMIN_NAME" \
+            --admin_password="$WP_ADMIN_PASSWORD" \
+            --admin_email="$WP_ADMIN_EMAIL" \
             --allow-root; then
             break  
         else
-            echo "Installation failed, retrying..."
+            echo 1>&2 "Installation failed, retrying..."
             sleep 1
         fi
     done
 
-    wp user create $PLEB_NAME $PLEB_EMAIL --user_pass=$PLEB_PASSWORD --allow-root
+    wp user create $WP_USER_NAME \
+                    $WP_USER_EMAIL \
+                    --user_pass=$WP_USER_PASSWORD \
+                    --allow-root
 
     executable
 fi

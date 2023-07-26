@@ -39,6 +39,4 @@ kill_all:
 $(DATABASE):
 	mkdir -p /home/fsandel/data/wordpress_database
 	mkdir -p /home/fsandel/data/wordpress_website_files
-	mkdir -p data
-	ln -s /home/fsandel/data/wordpress_database data/wordpress_database
-	ln -s /home/fsandel/data/wordpress_website_files data/wordpress_website_files
+	ln -s /home/fsandel/data data

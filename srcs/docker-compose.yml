@@ -57,7 +57,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ./wordpress_database
+      device: /home/fsandel/data/wordpress_database
 
   wordpress_website_files:
     name: wordpress_website_files
@@ -65,7 +65,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ./wordpress_website_files
+      device: /home/fsandel/data/wordpress_website_files
 
 
 networks:

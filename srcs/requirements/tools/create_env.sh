@@ -9,14 +9,15 @@ write_variable() {
 rm -f srcs/.env
 touch srcs/.env
 
-write_variable "DOMAIN_NAME"
-write_variable "HOSTNAME"
-write_variable "WEBSITE_TITLE"
-write_variable "WEBSITE_EMAIL"
-write_variable "DATABASE"
-write_variable "USER_NAME"
-write_variable "USER_PASSWORD"
-write_variable "ROOT_PASSWORD"
-write_variable "PLEB_NAME"
-write_variable "PLEB_PASSWORD"
-write_variable "PLEB_EMAIL"
+write_variable "WP_ADMIN_NAME"
+write_variable "WP_ADMIN_PASSWORD"
+write_variable "WP_ADMIN_EMAIL"
+
+write_variable "WP_USER_NAME"
+write_variable "WP_USER_PASSWORD"
+write_variable "WP_USER_EMAIL"
+
+write_variable "DATABASE_NAME"
+write_variable "DB_ROOT_PASSWORD"
+write_variable "DB_USER_NAME"
+write_variable "DB_USER_PASSWORD"
