@@ -14,6 +14,4 @@ RUN chmod +x /mariadb_setup.sh
 COPY ./tools/sql_setup.sh /
 RUN chmod +x /sql_setup.sh
 
-EXPOSE 3306
-
 CMD ["/mariadb_setup.sh"]
