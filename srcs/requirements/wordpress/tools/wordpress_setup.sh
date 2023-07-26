@@ -13,10 +13,11 @@ else
     cd /var/www/html
     rm -rf /var/www/html/*
 
-    wget http://wordpress.org/latest.tar.gz
-    tar xfz latest.tar.gz
-    mv wordpress/* .
-    rm -rf latest.tar.gz wordpress
+    curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar \
+        && chmod +x wp-cli.phar \
+        && mv wp-cli.phar /usr/local/bin/wp
+
+    wp core download --allow-root
 
     /wordpress_config_setup.sh
 
