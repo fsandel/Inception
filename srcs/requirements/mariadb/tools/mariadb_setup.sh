@@ -1,8 +1,8 @@
 #!/bin/bash
 
 executable() {
-    mariadbd -u root --bind-address=0.0.0.0
     # /bin/bash
+    mariadbd -u root --bind-address=0.0.0.0
 }
 
 if test -f "/conf.sql"; then

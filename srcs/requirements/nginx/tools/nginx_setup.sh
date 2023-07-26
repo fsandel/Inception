@@ -1,3 +1,8 @@
 #!/bin/bash
 
-nginx -g 'daemon off;'
+executable() {
+    # /bin/bash
+    nginx -g 'daemon off;'
+}
+
+executable

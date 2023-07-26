@@ -1,7 +1,7 @@
 FROM debian:12.0
 
-LABEL maintainer="fsandel@student.42heilbronn.de"
 LABEL version="1.0"
+LABEL maintainer="fsandel@student.42heilbronn.de"
 LABEL description="MariaDB Server"
 
 RUN apt update && apt upgrade -y
