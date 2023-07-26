@@ -10,9 +10,6 @@ re:
 	-make down
 	-make all
 
-$(ENV):
-	./srcs/requirements/tools/create_env.sh
-
 down:
 	docker-compose -f srcs/docker-compose.yml down
 
@@ -40,3 +37,6 @@ $(DATABASE):
 	mkdir -p /home/fsandel/data/wordpress_database
 	mkdir -p /home/fsandel/data/wordpress_website_files
 	ln -s /home/fsandel/data data
+
+$(ENV):
+	./srcs/requirements/tools/create_env.sh
