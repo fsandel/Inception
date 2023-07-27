@@ -1,17 +1,11 @@
 #!/bin/bash
 
-executable() {
-    mariadbd -u root --bind-address=0.0.0.0
-}
+/sql_setup.sh
 
-if test -f "/conf.sql"; then
-    executable
-else
-    /sql_setup.sh
+# sleep infinity
 
-    service mariadb start
-    mariadb -u root < /conf.sql
-    service mariadb stop
+service mariadb start
+mariadb -u root < /conf.sql
+service mariadb stop
 
-    executable
-fi
+mariadbd -u root --bind-address=0.0.0.0

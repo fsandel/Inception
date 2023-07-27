@@ -1,4 +1,4 @@
-FROM debian:12.0
+FROM debian:11.0
 
 LABEL version="1.0"
 LABEL maintainer="fsandel@student.42heilbronn.de"
@@ -21,9 +21,9 @@ RUN apt install curl -y
 COPY ./tools/wordpress_setup.sh /
 RUN chmod +x /wordpress_setup.sh
 
-COPY ./tools/wordpress_config_setup.sh /
-RUN chmod +x /wordpress_config_setup.sh
+RUN rm -f /etc/php/8.2/fpm/pool.d/www.conf
+COPY ./conf/www.conf /etc/php/8.2/fpm/pool.d/www.conf
 
 WORKDIR /var/www/html/
 
-CMD ["/wordpress_setup.sh"]
+ENTRYPOINT ["/wordpress_setup.sh"]

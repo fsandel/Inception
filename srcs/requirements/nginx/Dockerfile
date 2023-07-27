@@ -1,4 +1,4 @@
-FROM debian:12.0
+FROM debian:11.0
 
 LABEL version="1.0"
 LABEL maintainer="fsandel@student.42heilbronn.de"
@@ -19,4 +19,4 @@ COPY ./conf/nginx.conf /etc/nginx/conf.d/default.conf
 
 EXPOSE 443
 
-CMD ["nginx", "-g", "daemon off;"]
+ENTRYPOINT ["nginx", "-g", "daemon off;"]
