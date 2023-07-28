@@ -1,12 +1,14 @@
 #!/bin/bash
 
 executable() {
-    php-fpm8.2 -F -R
+    php-fpm"$PHP_VERSION" -F
 }
 
 mkdir -p /var/www/html
 cd /var/www/html
 rm -rf /var/www/html/*
+mkdir -p /run/php
+
 
 curl -o /usr/local/bin/wp -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
 chmod +x /usr/local/bin/wp
@@ -21,8 +23,6 @@ wp config create \
     --force \
     --skip-check \
     --allow-root
-
-sleep 10
 
 while ! wp core install \
         --url="fsandel.42.fr" \

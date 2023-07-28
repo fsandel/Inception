@@ -10,6 +10,12 @@ re:
 	-make down
 	-make all
 
+mariadb:
+	-make down
+	-make remove_volumes
+	-make prep_volumes
+	-make up
+
 down:
 	docker-compose -f srcs/docker-compose.yml down
 
@@ -32,6 +38,8 @@ remove_volumes:
 
 kill_all:
 	docker kill $(shell docker ps -q)
+
+prep_volumes: $(DATABASE)
 
 $(DATABASE):
 	mkdir -p /home/fsandel/data/wordpress_database

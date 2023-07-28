@@ -6,23 +6,26 @@ LABEL description="WordPress Server"
 
 RUN apt update && apt upgrade -y
 
-RUN apt install php8.2-fpm \
-                php8.2-cli \
-                php8.2-common \
-                php8.2-mysql \
-                php8.2-mysqli \
-                php8.2-gd \
-                php8.2-curl \
-                php8.2-mbstring \
-                php8.2-xml -y
+ARG PHP_VERSION=7.4
+ENV PHP_VERSION=${PHP_VERSION}
+
+RUN apt install php${PHP_VERSION}-fpm \
+                php${PHP_VERSION}-cli \
+                php${PHP_VERSION}-common \
+                php${PHP_VERSION}-mysql \
+                php${PHP_VERSION}-mysqli \
+                php${PHP_VERSION}-gd \
+                php${PHP_VERSION}-curl \
+                php${PHP_VERSION}-mbstring \
+                php${PHP_VERSION}-xml -y
 
 RUN apt install curl -y
 
 COPY ./tools/wordpress_setup.sh /
 RUN chmod +x /wordpress_setup.sh
 
-RUN rm -f /etc/php/8.2/fpm/pool.d/www.conf
-COPY ./conf/www.conf /etc/php/8.2/fpm/pool.d/www.conf
+RUN rm -f /etc/php/${PHP_VERSION}/fpm/pool.d/www.conf
+COPY ./conf/www.conf /etc/php/${PHP_VERSION}/fpm/pool.d/www.conf
 
 WORKDIR /var/www/html/
 
