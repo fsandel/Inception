@@ -27,6 +27,7 @@ RUN chmod +x /wordpress_setup.sh
 RUN rm -f /etc/php/${PHP_VERSION}/fpm/pool.d/www.conf
 COPY ./conf/www.conf /etc/php/${PHP_VERSION}/fpm/pool.d/www.conf
 
+RUN mkdir -p /var/www/html/
 WORKDIR /var/www/html/
 
 ENTRYPOINT ["/wordpress_setup.sh"]

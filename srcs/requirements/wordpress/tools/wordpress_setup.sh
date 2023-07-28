@@ -1,14 +1,6 @@
 #!/bin/bash
 
-executable() {
-    php-fpm"$PHP_VERSION" -F
-}
-
-mkdir -p /var/www/html
-cd /var/www/html
-rm -rf /var/www/html/*
 mkdir -p /run/php
-
 
 curl -o /usr/local/bin/wp -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
 chmod +x /usr/local/bin/wp
@@ -41,4 +33,4 @@ wp user create $WP_USER_NAME \
                 --user_pass=$WP_USER_PASSWORD \
                 --allow-root
 
-executable
+php-fpm"$PHP_VERSION" -F
